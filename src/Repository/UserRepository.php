@@ -27,20 +27,16 @@ class UserRepository
     public function add(array $user): void
     {
         $users = $this->getAll(); // получаем массив
-        $users[] = $user; // добавляем пользователя
-        file_put_contents(self::JSON_DB, json_encode($users, JSON_PRETTY_PRINT)); // перезаписываем файл
+        $users[$user['id']] = $user; // добавляем пользователя
+        file_put_contents(self::JSON_DB, json_encode($users, JSON_THROW_ON_ERROR | JSON_PRETTY_PRINT)); // перезаписываем файл
     }
 
     public function delete(int $id): void
     {
         $users = $this->getAll();
-        $filter = [];
-        foreach ($users as $user) {
-            if ($user['id'] !== $id) {
-                $filter[] = $user;
-            }
-        }
-        file_put_contents(self::JSON_DB, json_encode($filter, JSON_PRETTY_PRINT));
+
+        unset($users[$id]);
+        file_put_contents(self::JSON_DB, json_encode($users, JSON_THROW_ON_ERROR | JSON_PRETTY_PRINT));
     }
 
 

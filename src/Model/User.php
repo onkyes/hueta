@@ -4,12 +4,7 @@ namespace App\Model;
 
 class User
 {
-    public int $id;
-    public string $firstName;
-    public string $lastName;
-    public string $email;
-
-    public function __construct(int $id, string $firstName, string $lastName, string $email)
+    public function __construct(public int $id,public string $firstName,public string $lastName,public string $email)
     {
         $this->id = $id;
         $this->firstName = $firstName;
