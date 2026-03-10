@@ -3,32 +3,53 @@
 namespace App\Repository;
 
 
+
+
 // прочитать json файл
 // сохранить json файл
 // удалить пользователя
 class UserRepository
 {
 
-    private const JSON_DB = __DIR__ . '/../../users.json';
+    public function __construct(private string $dbSource)
+    {}
+
+
+
     public function getAll(): array
     {
-        $result = file_get_contents(self::JSON_DB);
-        if ($result === false) { //проверка на чтение
-            return [];
-        }
-        $users = json_decode($result, true);
-        if (!is_array($users)) { //проверка на массив
-            return [];
+        if ($this->dbSource === 'json' ) {
+            $result = file_get_contents($this->dbSource); // считывает содержимое файла в строку
+
+            if ($result === false) { //проверка на чтение
+                return [];
+            }
+
+            $users = json_decode($result, true, 512, JSON_THROW_ON_ERROR);
+
+            if (!is_array($users)) { //проверка на массив
+                return [];
+            }
+
+            return $users;
+
+        } else {
+            // запрос к постгрису
         }
 
-        return $users;
+
     }
 
     public function add(array $user): void
     {
         $users = $this->getAll(); // получаем массив
         $users[$user['id']] = $user; // добавляем пользователя
-        file_put_contents(self::JSON_DB, json_encode($users, JSON_THROW_ON_ERROR | JSON_PRETTY_PRINT)); // перезаписываем файл
+
+        if ($this->dbSource === 'json') {
+            file_put_contents(self::JSON_DB, json_encode($users, JSON_THROW_ON_ERROR | JSON_PRETTY_PRINT)); // перезаписываем файл
+        } else {
+            // запрос к бд
+        }
     }
 
     public function delete(int $id): void
@@ -36,7 +57,11 @@ class UserRepository
         $users = $this->getAll();
 
         unset($users[$id]);
-        file_put_contents(self::JSON_DB, json_encode($users, JSON_THROW_ON_ERROR | JSON_PRETTY_PRINT));
+        if ($this->dbSource === 'json') {
+            file_put_contents(self::JSON_DB, json_encode($users, JSON_THROW_ON_ERROR | JSON_PRETTY_PRINT));
+        } else {
+            // запрос к бд
+        }
     }
 
 

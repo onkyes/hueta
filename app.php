@@ -4,7 +4,9 @@ use App\Service\UserService;
 
 require __DIR__ . '/vendor/autoload.php'; //вроде не сложно
 
-$repository = new UserRepository();
+$config = parse_ini_file("./.env"); //чтение конфига (путь к файлу)
+$dbSource = $config['DB_SOURCE'] ?? null;
+$repository = new UserRepository($dbSource);
 $service = new UserService($repository);
 
 $command = $argv[1] ?? null; // сколько не читала в документации пхп ни чёрта не поняла, как это работает и уе8ала у гпт строку
