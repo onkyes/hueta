@@ -7,7 +7,7 @@ namespace App\Service;
 // генерация имени
 // генерация email
 // вызвать методы репозитори
-use App\Repository\UserRepository;
+use App\Repository\UserRepositoryInterface;
 
 // предложил шторм хз чо это
 
@@ -17,8 +17,8 @@ class UserService
     private array $randFirstNames = ['Гаврила', 'Петручо', 'Андрей', 'Полу', 'Лина', 'Бабка', 'Дура'];
     private array $randLastNames = ['Дуболомов', 'Скамерок', 'Санстрайк', 'Покер', 'Однопульный', 'Калоед', 'Покер'];
 
-    private UserRepository $repository;
-    public function __construct(UserRepository $repository)
+    private UserRepositoryInterface $repository;
+    public function __construct(UserRepositoryInterface $repository)
     {
         $this->repository = $repository;
     }
@@ -68,4 +68,4 @@ class UserService
     }
 }
 
-// $account - массив данных, если пользователь сам придумает имя
+
