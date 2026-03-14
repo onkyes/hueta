@@ -27,7 +27,7 @@ class JsonUserRepository implements UserRepositoryInterface
     {
         $users = $this->getAll();
         $users[$user['id']] = $user;
-        file_put_contents($this->filePath, json_encode($users, JSON_PRETTY_PRINT));
+        file_put_contents($this->filePath, json_encode($users, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
     }
 
     public function delete(int $id): void
@@ -36,6 +36,6 @@ class JsonUserRepository implements UserRepositoryInterface
 
         unset($users[$id]);
 
-        file_put_contents($this->filePath, json_encode($users, JSON_PRETTY_PRINT));
+        file_put_contents($this->filePath, json_encode($users, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
     }
 }

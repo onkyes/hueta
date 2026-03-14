@@ -14,8 +14,8 @@ use App\Repository\UserRepositoryInterface;
 class UserService
 {
     //массив имён = свойство класса
-    private array $randFirstNames = ['Гаврила', 'Петручо', 'Андрей', 'Полу', 'Лина', 'Бабка', 'Дура'];
-    private array $randLastNames = ['Дуболомов', 'Скамерок', 'Санстрайк', 'Покер', 'Однопульный', 'Калоед', 'Покер'];
+    private array $randFirstNames = ['Gavrila', 'Faggot', 'Andrey', 'Polu', 'Lina', 'Babka', 'Dura'];
+    private array $randLastNames = ['Dubolomov', 'Skamerok', 'SunStrike', 'Poker', 'Odnopulniy', 'Kaloed', 'WetPussy'];
 
     private UserRepositoryInterface $repository;
     public function __construct(UserRepositoryInterface $repository)

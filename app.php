@@ -17,7 +17,7 @@ if ($dbSource === 'postgres') {
     $repository = new PostgresUserRepository($pdo);
 
 } else {
-    $repository = new JsonUserRepository($dbSource);
+    $repository = new JsonUserRepository('users.json');
 }
 $service = new UserService($repository);
 
@@ -36,10 +36,20 @@ if ($command === 'list') {
 
 
 if ($command === 'add') {
-    $user = $service->createUser(); // по аналогии из репозитори
-    $repository->add($user);
+
+    $firstName = readline("Имя врага? ");
+    $lastName = readline("Фамилия врага? ");
+    $email = readline("email врага? ");
+
+    $createUser = $service->createUser([
+        'firstName' => $firstName ?: null,
+        'lastName' => $lastName ?: null,
+        'email' => $email ?: null,
+    ]); // по аналогии из репозитори
+
     echo "Список врагов пополнен\n";
 }
+
 if ($command === 'delete' && $id) { // сервис
     $service->removeUser((int)$id);
     echo "Враг уничтожен\n";
