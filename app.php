@@ -5,15 +5,13 @@ use App\Repository\JsonUserRepository;
 use App\Repository\PostgresUserRepository;
 
 require __DIR__ . '/vendor/autoload.php'; //вроде не сложно
-
+require __DIR__ . '/db.php';
 
 $config = parse_ini_file("./.env"); //чтение конфига (путь к файлу)
 $dbSource = $config['DB_SOURCE'] ?? null;
 
 if ($dbSource === 'postgres') {
-    $dsn = 'pgsql:host=127.0.0.1;port=5432;dbname=test_test;user=postgres;password=';
-    $pdo = new PDO($dsn);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
     $repository = new PostgresUserRepository($pdo);
 
 } else {
