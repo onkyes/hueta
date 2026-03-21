@@ -1,1 +1,38 @@
-[]
+{
+    "1": {
+        "id": 1,
+        "firstName": "sd",
+        "lastName": "Poker",
+        "email": "sd.poker@gmail.com"
+    },
+    "3": {
+        "id": 3,
+        "firstName": "Гаврош",
+        "lastName": "Faggot",
+        "email": "faggot.boy@gmail.com"
+    },
+    "4": {
+        "id": 4,
+        "firstName": "pukich",
+        "lastName": "kookich",
+        "email": "pukich.kookich@gmail.com"
+    },
+    "5": {
+        "id": 5,
+        "firstName": "ППитушара",
+        "lastName": "Лошков",
+        "email": "ППитушара.Лошков@gmail.com"
+    },
+    "6": {
+        "id": 6,
+        "firstName": "Faggot",
+        "lastName": "WetPussy",
+        "email": "faggot.wetpussy@gmail.com"
+    },
+    "7": {
+        "id": 7,
+        "firstName": "Враг",
+        "lastName": "Лютый",
+        "email": "enemy@example.com"
+    }
+}

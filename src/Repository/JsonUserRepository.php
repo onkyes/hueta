@@ -39,3 +39,5 @@ class JsonUserRepository implements UserRepositoryInterface
         file_put_contents($this->filePath, json_encode($users, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
     }
 }
+
+// $filePath потом сюда передастся путь к файлу
