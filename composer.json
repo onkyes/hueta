@@ -6,6 +6,7 @@
   },
   "require": {
     "ext-pdo": "*",
-    "ext-readline": "*"
+    "ext-readline": "*",
+    "vlucas/phpdotenv": "^5.6"
   }
 }
