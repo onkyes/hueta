@@ -3,10 +3,6 @@
 namespace App\Service;
 
 
-// генерация id
-// генерация имени
-// генерация email
-// вызвать методы репозитори
 use App\Repository\UserRepositoryInterface;
 
 // предложил шторм хз чо это

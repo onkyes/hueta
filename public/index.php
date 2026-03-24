@@ -1,19 +1,21 @@
 <?php
 
+use App\RepositoryFactory;
 use App\Service\UserService;
 use App\Repository\PostgresUserRepository;
 use App\Repository\JsonUserRepository;
 
-require __DIR__ . '/../db.php';
+require __DIR__ . '/../src/RepositoryFactory.php';
 require __DIR__ . '/../vendor/autoload.php';
 
 
 
-if ($dbSource === 'postgres') {
-    $repository = new PostgresUserRepository($pdo);
-} else {
-    $repository = new JsonUserRepository($filePath);
-}
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
+$dotenv->load();
+
+
+$factory = new RepositoryFactory();
+$repository = $factory();
 
 $service = new UserService($repository);
 
@@ -27,6 +29,7 @@ if ($uri === '/users' && $method === 'GET') {
 }
 
 if ($uri === '/users' && $method === 'POST') {
+
     $json = file_get_contents('php://input');
     $data = json_decode($json, true);
     $service->createUser($data);

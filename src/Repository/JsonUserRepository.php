@@ -6,7 +6,7 @@ use App\Repository\UserRepositoryInterface;
 
 class JsonUserRepository implements UserRepositoryInterface
 {
-    public function __construct(private string $filePath) {}
+    public function __construct(private readonly string $filePath) {}
 
 
     public function getAll(): array
